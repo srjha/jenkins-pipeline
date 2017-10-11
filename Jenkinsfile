@@ -1,7 +1,11 @@
-node {
-    
-    stage('Clone sources') {
-        git url: 'https://github.com/srjha/hello-ec2.git'
+pipeline {
+    agent { label 'master' }
+    stages {
+       stage('build') {
+          steps {
+             bat 'gradle clean build'
+             echo 'Build done'
+          }
+       }
     }
-    sh "gradle build"
 }
